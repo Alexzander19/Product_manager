@@ -1,0 +1,15 @@
+{% extends 'products/base.html' %}
+
+{% block content %}
+
+<h2> Форма добавления продукта</h2>
+
+<form action = "{% url 'add_product' %}" method="post" >
+    {% csrf_token %}
+
+    {{ form.as_p }}
+
+    <button name="submit"> ЗАПИСАТЬ </button>
+
+
+{% endblock content %}

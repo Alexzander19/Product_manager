@@ -1,0 +1,21 @@
+{% extends 'products/base.html' %}
+
+{% block content %}
+
+<h2> А это список продуктов</h2>
+
+{% for product in products %}
+
+    <ul>
+        <li> Продукт: {{product.name}} 
+            <p> описание: {{product.description}}</p> 
+            <p> стоимость: {{product.price}} руб./100гр.</p>
+        
+        
+        </li>
+        
+    </ul>
+
+{% endfor%}
+
+{% endblock content %}

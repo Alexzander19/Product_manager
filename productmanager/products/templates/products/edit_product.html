@@ -1,0 +1,18 @@
+{% extends 'products/base.html' %}
+
+{% block content %}
+
+<p> Редактирование  продукта</p>
+
+<form action ="{% url 'edit_product' product.id %}" method="post">
+
+    {% csrf_token %}
+
+    {{form.as_p}}
+
+    <button name ="submit"> Сохранить изменения </button>
+</form>
+
+
+
+{% endblock content %}
