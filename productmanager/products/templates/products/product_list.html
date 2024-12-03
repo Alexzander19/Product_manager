@@ -7,10 +7,13 @@
 {% for product in products %}
 
     <ul>
-        <li> Продукт: {{product.name}} 
+        <li> <a href = "{% url 'one_product' product.id %}"> Продукт: {{product.name}} </a>
             <p> описание: {{product.description}}</p> 
             <p> стоимость: {{product.price}} руб./100гр.</p>
+            <p> <a href = "{% url 'edit_product' product.id %}" > РЕДАКТИРОВАТЬ</a></p>
         
+            <p> <a href = "{% url 'one_delete_product' product.id %} " > УДАЛИТЬ</a></p>
+           
         
         </li>
         

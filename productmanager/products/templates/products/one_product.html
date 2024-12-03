@@ -1,0 +1,21 @@
+{% extends 'products/base.html' %}
+
+{% block content%}
+
+<h3> Наименование продукта: {{ product.name}}</h3>
+<h3> Описание продукта:</h3>
+<h4> {{product.description}}</h4>
+<h3> Цена продукта: {{ product.price}}</h3>
+<h3> Дата создания записи: </h3>
+<h4> {{product.created_at}}</h4>
+
+{% if to_delete %}
+
+    <h3> <a href = "{% url 'delete_product' product.id %}">Подтверждаю удаление</a> </h3>
+    <h3> <a href = "{% url 'product_list' %}"> Не удалять</a></h3>
+
+
+{% endif %}
+
+{% endblock content%}
+

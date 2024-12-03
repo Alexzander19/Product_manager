@@ -1,5 +1,5 @@
 from django.http import HttpResponse
-from django.shortcuts import redirect, render
+from django.shortcuts import get_object_or_404, redirect, render
 
 from .forms import AddProductForm
 
@@ -52,7 +52,8 @@ def add_product(request):
 
 def edit_product(request, p_id):
 
-    product = Product.objects.get(id = p_id)
+# product = Product.objects.get(id = p_id)
+    product = get_object_or_404(Product, id=p_id)
 
     if request.method != 'POST':
         # Исходный запрос. Форма заполняется данными текущей записи.
@@ -68,7 +69,29 @@ def edit_product(request, p_id):
     return render(request,'products/edit_product.html',context)
 
 
-def delete_product(request, id):
-    return HttpResponse("Удалить продукт")
+def delete_product(request, p_id):
+
+    product = get_object_or_404(Product,id = p_id)
+    product.delete()
+    return redirect('product_list')
+
+def one_product(request, p_id):
+    # запроса на удаление не требуется
+    to_delete = False
+
+    product = get_object_or_404(Product,id = p_id)
+    context = {'product': product, 'to_delete': to_delete}
+    return render(request,'products/one_product.html',context)
+
+
+def one_delete_product(request, p_id):
+
+    # запрос на удаление. Требуем подтверждение
+    to_delete = True
+
+    product = get_object_or_404(Product,id = p_id)
+    context = {'product': product, 'to_delete': to_delete}
+    return render(request,'products/one_product.html',context)
+   
         
     
